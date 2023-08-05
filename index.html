@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coin Flipper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="coin">H</div>
+
+<button onclick="flipCoin()">Flip Coin</button>
+
+<script>
+const flipResults = ["H", "T"];
+
+function flipCoin() {
+
+  document.getElementById("coin").textContent = "";
+
+  let flips = [];
+
+  // Do 3 fake flips
+  for(let i = 0; i < 3; i++) {
+    let randomIndex = Math.floor(Math.random() * 2);
+    flips.push(flipResults[randomIndex]);
+  }
+
+  // Display flips with short delay
+  let count = 0;
+  const interval = setInterval(function() {
+    document.getElementById("coin").textContent = flips[count];
+    count++;
+    if(count === flips.length) {
+      clearInterval(interval);
+    }
+  }, 100);
+
+  // Final result
+  setTimeout(function(){
+    let finalFlip = Math.floor(Math.random() * 2);
+    document.getElementById("coin").textContent = flipResults[finalFlip];
+  }, 400);
+
+}
+</script>
+
+</body>
+</html>
